@@ -1,15 +1,15 @@
 {
   "openapi": "3.1.0",
   "info": {
-    "title": "Hula bird API",
-    "description": "Deterministic, fictional bird observations for the experience day.",
+    "title": "Hula biodiversity API",
+    "description": "Deterministic, fictional biodiversity observations for the experience day.",
     "version": "0.1.0"
   },
   "paths": {
     "/api/detections": {
       "get": {
         "summary": "List Detections",
-        "description": "One aggregated row per detected species, as in the reference table.\n\nSearch matches common or scientific names (case insensitive). Out-of-range\npages return an empty items array and retain the matching total.",
+        "description": "One aggregated row per detected species.\n\nSearch matches common or scientific names (case insensitive). The optional taxon filter limits results to birds, amphibians, or bats. Out-of-range pages return an empty items array and retain the matching total.",
         "operationId": "listDetections",
         "parameters": [
           {
@@ -44,6 +44,14 @@
               "maxLength": 100,
               "default": "",
               "title": "Search"
+            }
+          },
+          {
+            "name": "taxon",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/Taxon"
             }
           },
           {
@@ -100,19 +108,19 @@
         }
       }
     },
-    "/api/birds/{bird_id}": {
+    "/api/species/{species_id}": {
       "get": {
-        "summary": "Get Bird",
+        "summary": "Get Species",
         "description": "Get species information and monthly detection activity by stable ID.",
-        "operationId": "getBird",
+        "operationId": "getSpecies",
         "parameters": [
           {
-            "name": "bird_id",
+            "name": "species_id",
             "in": "path",
             "required": true,
             "schema": {
               "type": "string",
-              "title": "Bird Id"
+              "title": "Species Id"
             }
           }
         ],
@@ -122,7 +130,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/BirdDetail"
+                  "$ref": "#/components/schemas/SpeciesDetail"
                 }
               }
             }
@@ -153,7 +161,7 @@
           },
           "detection_count": {
             "type": "integer",
-            "minimum": 0.0,
+            "minimum": 0,
             "title": "Detection Count"
           }
         },
@@ -164,11 +172,14 @@
         ],
         "title": "ActivityPoint"
       },
-      "BirdDetail": {
+      "SpeciesSummary": {
         "properties": {
           "id": {
             "type": "string",
             "title": "Id"
+          },
+          "taxon": {
+            "$ref": "#/components/schemas/Taxon"
           },
           "common_name": {
             "type": "string",
@@ -218,7 +229,85 @@
           },
           "detection_count": {
             "type": "integer",
-            "minimum": 0.0,
+            "minimum": 0,
+            "title": "Detection Count",
+            "description": "Recorded events, not individuals"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "taxon",
+          "common_name",
+          "scientific_name",
+          "image_url",
+          "conservation_status",
+          "presence",
+          "detected_by",
+          "detected_on",
+          "last_detected_at",
+          "detection_count"
+        ],
+        "title": "SpeciesSummary"
+      },
+      "SpeciesDetail": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "taxon": {
+            "$ref": "#/components/schemas/Taxon"
+          },
+          "common_name": {
+            "type": "string",
+            "title": "Common Name"
+          },
+          "scientific_name": {
+            "type": "string",
+            "title": "Scientific Name"
+          },
+          "image_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Image Url"
+          },
+          "conservation_status": {
+            "$ref": "#/components/schemas/ConservationStatus"
+          },
+          "presence": {
+            "$ref": "#/components/schemas/Presence"
+          },
+          "detected_by": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Detected By",
+            "description": "BioT sensor names"
+          },
+          "detected_on": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Detected On",
+            "description": "Site names"
+          },
+          "last_detected_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Last Detected At"
+          },
+          "detection_count": {
+            "type": "integer",
+            "minimum": 0,
             "title": "Detection Count",
             "description": "Recorded events, not individuals"
           },
@@ -264,6 +353,7 @@
         "type": "object",
         "required": [
           "id",
+          "taxon",
           "common_name",
           "scientific_name",
           "image_url",
@@ -280,81 +370,7 @@
           "population_trend",
           "activity"
         ],
-        "title": "BirdDetail"
-      },
-      "BirdSummary": {
-        "properties": {
-          "id": {
-            "type": "string",
-            "title": "Id"
-          },
-          "common_name": {
-            "type": "string",
-            "title": "Common Name"
-          },
-          "scientific_name": {
-            "type": "string",
-            "title": "Scientific Name"
-          },
-          "image_url": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Image Url"
-          },
-          "conservation_status": {
-            "$ref": "#/components/schemas/ConservationStatus"
-          },
-          "presence": {
-            "$ref": "#/components/schemas/Presence"
-          },
-          "detected_by": {
-            "items": {
-              "type": "string"
-            },
-            "type": "array",
-            "title": "Detected By",
-            "description": "BioT sensor names"
-          },
-          "detected_on": {
-            "items": {
-              "type": "string"
-            },
-            "type": "array",
-            "title": "Detected On",
-            "description": "Site names"
-          },
-          "last_detected_at": {
-            "type": "string",
-            "format": "date-time",
-            "title": "Last Detected At"
-          },
-          "detection_count": {
-            "type": "integer",
-            "minimum": 0.0,
-            "title": "Detection Count",
-            "description": "Recorded events, not individuals"
-          }
-        },
-        "type": "object",
-        "required": [
-          "id",
-          "common_name",
-          "scientific_name",
-          "image_url",
-          "conservation_status",
-          "presence",
-          "detected_by",
-          "detected_on",
-          "last_detected_at",
-          "detection_count"
-        ],
-        "title": "BirdSummary"
+        "title": "SpeciesDetail"
       },
       "ConservationStatus": {
         "type": "string",
@@ -370,7 +386,7 @@
         "properties": {
           "items": {
             "items": {
-              "$ref": "#/components/schemas/BirdSummary"
+              "$ref": "#/components/schemas/SpeciesSummary"
             },
             "type": "array",
             "title": "Items"
@@ -403,6 +419,25 @@
         ],
         "title": "DetectionPage"
       },
+      "Presence": {
+        "type": "string",
+        "enum": [
+          "resident",
+          "breeding",
+          "passing",
+          "unknown"
+        ],
+        "title": "Presence"
+      },
+      "Taxon": {
+        "type": "string",
+        "enum": [
+          "bird",
+          "amphibian",
+          "bat"
+        ],
+        "title": "Taxon"
+      },
       "HTTPValidationError": {
         "properties": {
           "detail": {
@@ -415,16 +450,6 @@
         },
         "type": "object",
         "title": "HTTPValidationError"
-      },
-      "Presence": {
-        "type": "string",
-        "enum": [
-          "resident",
-          "breeding",
-          "passing",
-          "unknown"
-        ],
-        "title": "Presence"
       },
       "ValidationError": {
         "properties": {

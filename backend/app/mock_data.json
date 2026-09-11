@@ -1,6 +1,7 @@
 [
   {
     "id": "common-firecrest",
+    "taxon": "bird",
     "common_name": "Common Firecrest",
     "scientific_name": "Regulus ignicapilla",
     "image_url": null,
@@ -55,6 +56,7 @@
   },
   {
     "id": "coal-tit",
+    "taxon": "bird",
     "common_name": "Coal Tit",
     "scientific_name": "Periparus ater",
     "image_url": null,
@@ -106,6 +108,7 @@
   },
   {
     "id": "european-robin",
+    "taxon": "bird",
     "common_name": "European Robin",
     "scientific_name": "Erithacus rubecula",
     "image_url": null,
@@ -159,6 +162,7 @@
   },
   {
     "id": "eurasian-treecreeper",
+    "taxon": "bird",
     "common_name": "Eurasian Treecreeper",
     "scientific_name": "Certhia familiaris",
     "image_url": null,
@@ -212,6 +216,7 @@
   },
   {
     "id": "water-rail",
+    "taxon": "bird",
     "common_name": "Water Rail",
     "scientific_name": "Rallus aquaticus",
     "image_url": null,
@@ -264,6 +269,7 @@
   },
   {
     "id": "marsh-tit",
+    "taxon": "bird",
     "common_name": "Marsh Tit",
     "scientific_name": "Poecile palustris",
     "image_url": null,
@@ -315,6 +321,7 @@
   },
   {
     "id": "great-spotted-woodpecker",
+    "taxon": "bird",
     "common_name": "Great Spotted Woodpecker",
     "scientific_name": "Dendrocopos major",
     "image_url": null,
@@ -368,6 +375,7 @@
   },
   {
     "id": "common-buzzard",
+    "taxon": "bird",
     "common_name": "Common Buzzard",
     "scientific_name": "Buteo buteo",
     "image_url": null,
@@ -420,6 +428,7 @@
   },
   {
     "id": "eurasian-jay",
+    "taxon": "bird",
     "common_name": "Eurasian Jay",
     "scientific_name": "Garrulus glandarius",
     "image_url": null,
@@ -471,6 +480,7 @@
   },
   {
     "id": "eurasian-nuthatch",
+    "taxon": "bird",
     "common_name": "Eurasian Nuthatch",
     "scientific_name": "Sitta europaea",
     "image_url": null,
@@ -524,6 +534,7 @@
   },
   {
     "id": "common-chiffchaff",
+    "taxon": "bird",
     "common_name": "Common Chiffchaff",
     "scientific_name": "Phylloscopus collybita",
     "image_url": null,
@@ -576,6 +587,7 @@
   },
   {
     "id": "red-backed-shrike",
+    "taxon": "bird",
     "common_name": "Red-backed Shrike",
     "scientific_name": "Lanius collurio",
     "image_url": null,
@@ -627,6 +639,7 @@
   },
   {
     "id": "barn-swallow",
+    "taxon": "bird",
     "common_name": "Barn Swallow",
     "scientific_name": "Hirundo rustica",
     "image_url": null,
@@ -681,6 +694,7 @@
   },
   {
     "id": "common-blackbird",
+    "taxon": "bird",
     "common_name": "Common Blackbird",
     "scientific_name": "Turdus merula",
     "image_url": null,
@@ -734,6 +748,7 @@
   },
   {
     "id": "eurasian-skylark",
+    "taxon": "bird",
     "common_name": "Eurasian Skylark",
     "scientific_name": "Alauda arvensis",
     "image_url": null,
@@ -786,6 +801,7 @@
   },
   {
     "id": "great-tit",
+    "taxon": "bird",
     "common_name": "Great Tit",
     "scientific_name": "Parus major",
     "image_url": null,
@@ -834,6 +850,426 @@
       {
         "date": "2026-09-01",
         "detection_count": 33
+      }
+    ]
+  },
+  {
+    "id": "common-frog",
+    "taxon": "amphibian",
+    "common_name": "Common Frog",
+    "scientific_name": "Rana temporaria",
+    "image_url": null,
+    "conservation_status": "least_concern",
+    "presence": "breeding",
+    "detected_by": [
+      "BioT 03"
+    ],
+    "detected_on": [
+      "Pond 1"
+    ],
+    "last_detected_at": "2026-09-10T21:14:00Z",
+    "detection_count": 87,
+    "description": "Common Frog is included in this fictional project dataset. Its observations illustrate the amphibian breeding presence category; this is not an ecological assessment.",
+    "habitat": "Ponds, wet woodland, meadows and damp grassland.",
+    "breeding_months": [
+      2,
+      3,
+      4
+    ],
+    "audio_url": null,
+    "population_trend": "unknown",
+    "activity": [
+      {
+        "date": "2026-04-01",
+        "detection_count": 28
+      },
+      {
+        "date": "2026-05-01",
+        "detection_count": 22
+      },
+      {
+        "date": "2026-06-01",
+        "detection_count": 15
+      },
+      {
+        "date": "2026-07-01",
+        "detection_count": 10
+      },
+      {
+        "date": "2026-08-01",
+        "detection_count": 7
+      },
+      {
+        "date": "2026-09-01",
+        "detection_count": 5
+      }
+    ]
+  },
+  {
+    "id": "common-toad",
+    "taxon": "amphibian",
+    "common_name": "Common Toad",
+    "scientific_name": "Bufo bufo",
+    "image_url": null,
+    "conservation_status": "least_concern",
+    "presence": "resident",
+    "detected_by": [
+      "BioT 03"
+    ],
+    "detected_on": [
+      "Pond 1",
+      "South edge"
+    ],
+    "last_detected_at": "2026-09-09T22:48:00Z",
+    "detection_count": 64,
+    "description": "Common Toad is included in this fictional project dataset; this is not an ecological assessment.",
+    "habitat": "Ponds, woodland edges, gardens and damp grassland.",
+    "breeding_months": [
+      3,
+      4
+    ],
+    "audio_url": null,
+    "population_trend": "unknown",
+    "activity": [
+      {
+        "date": "2026-04-01",
+        "detection_count": 24
+      },
+      {
+        "date": "2026-05-01",
+        "detection_count": 16
+      },
+      {
+        "date": "2026-06-01",
+        "detection_count": 9
+      },
+      {
+        "date": "2026-07-01",
+        "detection_count": 6
+      },
+      {
+        "date": "2026-08-01",
+        "detection_count": 5
+      },
+      {
+        "date": "2026-09-01",
+        "detection_count": 4
+      }
+    ]
+  },
+  {
+    "id": "smooth-newt",
+    "taxon": "amphibian",
+    "common_name": "Smooth Newt",
+    "scientific_name": "Lissotriton vulgaris",
+    "image_url": null,
+    "conservation_status": "least_concern",
+    "presence": "breeding",
+    "detected_by": [
+      "BioT 03",
+      "BioT 04"
+    ],
+    "detected_on": [
+      "Pond 1",
+      "Pond 2"
+    ],
+    "last_detected_at": "2026-09-08T20:42:00Z",
+    "detection_count": 52,
+    "description": "Smooth Newt is included in this fictional project dataset. Its observations illustrate the amphibian breeding presence category; this is not an ecological assessment.",
+    "habitat": "Garden ponds, small wetlands, woodland edges and grassland.",
+    "breeding_months": [
+      3,
+      4,
+      5
+    ],
+    "audio_url": null,
+    "population_trend": "unknown",
+    "activity": [
+      {
+        "date": "2026-04-01",
+        "detection_count": 18
+      },
+      {
+        "date": "2026-05-01",
+        "detection_count": 14
+      },
+      {
+        "date": "2026-06-01",
+        "detection_count": 8
+      },
+      {
+        "date": "2026-07-01",
+        "detection_count": 5
+      },
+      {
+        "date": "2026-08-01",
+        "detection_count": 4
+      },
+      {
+        "date": "2026-09-01",
+        "detection_count": 3
+      }
+    ]
+  },
+  {
+    "id": "fire-salamander",
+    "taxon": "amphibian",
+    "common_name": "Fire Salamander",
+    "scientific_name": "Salamandra salamandra",
+    "image_url": null,
+    "conservation_status": "near_threatened",
+    "presence": "resident",
+    "detected_by": [
+      "BioT 03"
+    ],
+    "detected_on": [
+      "North woodland"
+    ],
+    "last_detected_at": "2026-09-09T23:12:00Z",
+    "detection_count": 31,
+    "description": "Fire Salamander is included in this fictional project dataset. Its observations illustrate the resident amphibian presence category; this is not an ecological assessment.",
+    "habitat": "Moist deciduous woodland, shaded streams and damp forest floor.",
+    "breeding_months": [
+      3,
+      4,
+      5,
+      6
+    ],
+    "audio_url": null,
+    "population_trend": "unknown",
+    "activity": [
+      {
+        "date": "2026-04-01",
+        "detection_count": 7
+      },
+      {
+        "date": "2026-05-01",
+        "detection_count": 8
+      },
+      {
+        "date": "2026-06-01",
+        "detection_count": 6
+      },
+      {
+        "date": "2026-07-01",
+        "detection_count": 4
+      },
+      {
+        "date": "2026-08-01",
+        "detection_count": 3
+      },
+      {
+        "date": "2026-09-01",
+        "detection_count": 3
+      }
+    ]
+  },
+  {
+    "id": "common-pipistrelle",
+    "taxon": "bat",
+    "common_name": "Common Pipistrelle",
+    "scientific_name": "Pipistrellus pipistrellus",
+    "image_url": null,
+    "conservation_status": "least_concern",
+    "presence": "resident",
+    "detected_by": [
+      "BioT 04",
+      "BioT 05"
+    ],
+    "detected_on": [
+      "South edge",
+      "Woodland clearing"
+    ],
+    "last_detected_at": "2026-09-10T23:18:00Z",
+    "detection_count": 512,
+    "description": "Common Pipistrelle is included in this fictional project dataset. Its observations illustrate the resident presence category; this is not an ecological assessment.",
+    "habitat": "Woodland edges, farmland, parks and areas around buildings.",
+    "breeding_months": [
+      6,
+      7
+    ],
+    "audio_url": null,
+    "population_trend": "unknown",
+    "activity": [
+      {
+        "date": "2026-04-01",
+        "detection_count": 42
+      },
+      {
+        "date": "2026-05-01",
+        "detection_count": 78
+      },
+      {
+        "date": "2026-06-01",
+        "detection_count": 112
+      },
+      {
+        "date": "2026-07-01",
+        "detection_count": 124
+      },
+      {
+        "date": "2026-08-01",
+        "detection_count": 101
+      },
+      {
+        "date": "2026-09-01",
+        "detection_count": 55
+      }
+    ]
+  },
+  {
+    "id": "brown-long-eared-bat",
+    "taxon": "bat",
+    "common_name": "Brown Long-eared Bat",
+    "scientific_name": "Plecotus auritus",
+    "image_url": null,
+    "conservation_status": "least_concern",
+    "presence": "resident",
+    "detected_by": [
+      "BioT 04"
+    ],
+    "detected_on": [
+      "Woodland clearing"
+    ],
+    "last_detected_at": "2026-09-10T22:56:00Z",
+    "detection_count": 138,
+    "description": "Brown Long-eared Bat is included in this fictional project dataset; this is not an ecological assessment.",
+    "habitat": "Woodland, woodland edges and mature buildings.",
+    "breeding_months": [
+      6,
+      7
+    ],
+    "audio_url": null,
+    "population_trend": "unknown",
+    "activity": [
+      {
+        "date": "2026-04-01",
+        "detection_count": 12
+      },
+      {
+        "date": "2026-05-01",
+        "detection_count": 21
+      },
+      {
+        "date": "2026-06-01",
+        "detection_count": 32
+      },
+      {
+        "date": "2026-07-01",
+        "detection_count": 31
+      },
+      {
+        "date": "2026-08-01",
+        "detection_count": 27
+      },
+      {
+        "date": "2026-09-01",
+        "detection_count": 15
+      }
+    ]
+  },
+  {
+    "id": "common-noctule",
+    "taxon": "bat",
+    "common_name": "Common Noctule",
+    "scientific_name": "Nyctalus noctula",
+    "image_url": null,
+    "conservation_status": "least_concern",
+    "presence": "passing",
+    "detected_by": [
+      "BioT 05"
+    ],
+    "detected_on": [
+      "South edge"
+    ],
+    "last_detected_at": "2026-09-10T21:48:00Z",
+    "detection_count": 186,
+    "description": "Common Noctule is included in this fictional project dataset. Its observations illustrate the passing presence category; this is not an ecological assessment.",
+    "habitat": "Open woodland, parks, river corridors and areas around mature trees.",
+    "breeding_months": [
+      6,
+      7,
+      8
+    ],
+    "audio_url": null,
+    "population_trend": "unknown",
+    "activity": [
+      {
+        "date": "2026-04-01",
+        "detection_count": 23
+      },
+      {
+        "date": "2026-05-01",
+        "detection_count": 31
+      },
+      {
+        "date": "2026-06-01",
+        "detection_count": 42
+      },
+      {
+        "date": "2026-07-01",
+        "detection_count": 39
+      },
+      {
+        "date": "2026-08-01",
+        "detection_count": 32
+      },
+      {
+        "date": "2026-09-01",
+        "detection_count": 19
+      }
+    ]
+  },
+  {
+    "id": "serotine-bat",
+    "taxon": "bat",
+    "common_name": "Serotine",
+    "scientific_name": "Eptesicus serotinus",
+    "image_url": null,
+    "conservation_status": "near_threatened",
+    "presence": "resident",
+    "detected_by": [
+      "BioT 04",
+      "BioT 05"
+    ],
+    "detected_on": [
+      "South edge",
+      "Arlesried 1"
+    ],
+    "last_detected_at": "2026-09-10T22:34:00Z",
+    "detection_count": 117,
+    "description": "Serotine is included in this fictional project dataset. Its observations illustrate the resident presence category; this is not an ecological assessment.",
+    "habitat": "Open woodland, pasture, woodland edges and areas near buildings.",
+    "breeding_months": [
+      6,
+      7
+    ],
+    "audio_url": null,
+    "population_trend": "unknown",
+    "activity": [
+      {
+        "date": "2026-04-01",
+        "detection_count": 9
+      },
+      {
+        "date": "2026-05-01",
+        "detection_count": 17
+      },
+      {
+        "date": "2026-06-01",
+        "detection_count": 29
+      },
+      {
+        "date": "2026-07-01",
+        "detection_count": 25
+      },
+      {
+        "date": "2026-08-01",
+        "detection_count": 22
+      },
+      {
+        "date": "2026-09-01",
+        "detection_count": 15
       }
     ]
   }

@@ -21,13 +21,61 @@ export type ActivityPoint = {
 };
 
 /**
- * BirdDetail
+ * SpeciesSummary
  */
-export type BirdDetail = {
+export type SpeciesSummary = {
     /**
      * Id
      */
     id: string;
+    taxon: Taxon;
+    /**
+     * Common Name
+     */
+    common_name: string;
+    /**
+     * Scientific Name
+     */
+    scientific_name: string;
+    /**
+     * Image Url
+     */
+    image_url: string | null;
+    conservation_status: ConservationStatus;
+    presence: Presence;
+    /**
+     * Detected By
+     *
+     * BioT sensor names
+     */
+    detected_by: Array<string>;
+    /**
+     * Detected On
+     *
+     * Site names
+     */
+    detected_on: Array<string>;
+    /**
+     * Last Detected At
+     */
+    last_detected_at: string;
+    /**
+     * Detection Count
+     *
+     * Recorded events, not individuals
+     */
+    detection_count: number;
+};
+
+/**
+ * SpeciesDetail
+ */
+export type SpeciesDetail = {
+    /**
+     * Id
+     */
+    id: string;
+    taxon: Taxon;
     /**
      * Common Name
      */
@@ -93,52 +141,6 @@ export type BirdDetail = {
 };
 
 /**
- * BirdSummary
- */
-export type BirdSummary = {
-    /**
-     * Id
-     */
-    id: string;
-    /**
-     * Common Name
-     */
-    common_name: string;
-    /**
-     * Scientific Name
-     */
-    scientific_name: string;
-    /**
-     * Image Url
-     */
-    image_url: string | null;
-    conservation_status: ConservationStatus;
-    presence: Presence;
-    /**
-     * Detected By
-     *
-     * BioT sensor names
-     */
-    detected_by: Array<string>;
-    /**
-     * Detected On
-     *
-     * Site names
-     */
-    detected_on: Array<string>;
-    /**
-     * Last Detected At
-     */
-    last_detected_at: string;
-    /**
-     * Detection Count
-     *
-     * Recorded events, not individuals
-     */
-    detection_count: number;
-};
-
-/**
  * ConservationStatus
  */
 export type ConservationStatus = 'least_concern' | 'near_threatened' | 'vulnerable' | 'endangered';
@@ -150,7 +152,7 @@ export type DetectionPage = {
     /**
      * Items
      */
-    items: Array<BirdSummary>;
+    items: Array<SpeciesSummary>;
     /**
      * Total
      *
@@ -172,6 +174,16 @@ export type DetectionPage = {
 };
 
 /**
+ * Presence
+ */
+export type Presence = 'resident' | 'breeding' | 'passing' | 'unknown';
+
+/**
+ * Taxon
+ */
+export type Taxon = 'bird' | 'amphibian' | 'bat';
+
+/**
  * HTTPValidationError
  */
 export type HttpValidationError = {
@@ -180,11 +192,6 @@ export type HttpValidationError = {
      */
     detail?: Array<ValidationError>;
 };
-
-/**
- * Presence
- */
-export type Presence = 'resident' | 'breeding' | 'passing' | 'unknown';
 
 /**
  * ValidationError
@@ -230,6 +237,7 @@ export type ListDetectionsData = {
          * Search
          */
         search?: string;
+        taxon?: Taxon;
         /**
          * Sort By
          */
@@ -260,32 +268,32 @@ export type ListDetectionsResponses = {
 
 export type ListDetectionsResponse = ListDetectionsResponses[keyof ListDetectionsResponses];
 
-export type GetBirdData = {
+export type GetSpeciesData = {
     body?: never;
     path: {
         /**
-         * Bird Id
+         * Species Id
          */
-        bird_id: string;
+        species_id: string;
     };
     query?: never;
-    url: '/api/birds/{bird_id}';
+    url: '/api/species/{species_id}';
 };
 
-export type GetBirdErrors = {
+export type GetSpeciesErrors = {
     /**
      * Validation Error
      */
     422: HttpValidationError;
 };
 
-export type GetBirdError = GetBirdErrors[keyof GetBirdErrors];
+export type GetSpeciesError = GetSpeciesErrors[keyof GetSpeciesErrors];
 
-export type GetBirdResponses = {
+export type GetSpeciesResponses = {
     /**
      * Successful Response
      */
-    200: BirdDetail;
+    200: SpeciesDetail;
 };
 
-export type GetBirdResponse = GetBirdResponses[keyof GetBirdResponses];
+export type GetSpeciesResponse = GetSpeciesResponses[keyof GetSpeciesResponses];
