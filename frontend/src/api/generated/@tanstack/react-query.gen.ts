@@ -3,8 +3,8 @@
 import { type InfiniteData, infiniteQueryOptions, queryOptions } from '@tanstack/react-query';
 
 import { client } from '../client.gen';
-import { getBird, listDetections, type Options } from '../sdk.gen';
-import type { GetBirdData, GetBirdError, GetBirdResponse, ListDetectionsData, ListDetectionsError, ListDetectionsResponse } from '../types.gen';
+import { getSpecies, listDetections, type Options } from '../sdk.gen';
+import type { GetSpeciesData, GetSpeciesError, GetSpeciesResponse, ListDetectionsData, ListDetectionsError, ListDetectionsResponse } from '../types.gen';
 
 export type QueryKey<TOptions extends Options> = [
     Pick<TOptions, 'baseUrl' | 'body' | 'headers' | 'path' | 'query'> & {
@@ -44,10 +44,9 @@ export const listDetectionsQueryKey = (options?: Options<ListDetectionsData>) =>
 /**
  * List Detections
  *
- * One aggregated row per detected species, as in the reference table.
+ * One aggregated row per detected species.
  *
- * Search matches common or scientific names (case insensitive). Out-of-range
- * pages return an empty items array and retain the matching total.
+ * Search matches common or scientific names (case insensitive). The optional taxon filter limits results to birds, amphibians, or bats. Out-of-range pages return an empty items array and retain the matching total.
  */
 export const listDetectionsOptions = (options?: Options<ListDetectionsData>) => queryOptions<ListDetectionsResponse, ListDetectionsError, ListDetectionsResponse, ReturnType<typeof listDetectionsQueryKey>>({
     queryFn: async ({ queryKey, signal }) => {
@@ -96,10 +95,9 @@ export const listDetectionsInfiniteQueryKey = (options?: Options<ListDetectionsD
 /**
  * List Detections
  *
- * One aggregated row per detected species, as in the reference table.
+ * One aggregated row per detected species.
  *
- * Search matches common or scientific names (case insensitive). Out-of-range
- * pages return an empty items array and retain the matching total.
+ * Search matches common or scientific names (case insensitive). The optional taxon filter limits results to birds, amphibians, or bats. Out-of-range pages return an empty items array and retain the matching total.
  */
 export const listDetectionsInfiniteOptions = (options?: Options<ListDetectionsData>) => {
     const opts = infiniteQueryOptions<ListDetectionsResponse, ListDetectionsError, InfiniteData<ListDetectionsResponse>, QueryKey<Options<ListDetectionsData>>, number | Pick<QueryKey<Options<ListDetectionsData>>[0], 'body' | 'headers' | 'path' | 'query'>>(
@@ -126,16 +124,16 @@ export const listDetectionsInfiniteOptions = (options?: Options<ListDetectionsDa
     return opts as Omit<typeof opts, 'initialData'>;
 };
 
-export const getBirdQueryKey = (options: Options<GetBirdData>) => createQueryKey('getBird', options);
+export const getSpeciesQueryKey = (options: Options<GetSpeciesData>) => createQueryKey('getSpecies', options);
 
 /**
- * Get Bird
+ * Get Species
  *
  * Get species information and monthly detection activity by stable ID.
  */
-export const getBirdOptions = (options: Options<GetBirdData>) => queryOptions<GetBirdResponse, GetBirdError, GetBirdResponse, ReturnType<typeof getBirdQueryKey>>({
+export const getSpeciesOptions = (options: Options<GetSpeciesData>) => queryOptions<GetSpeciesResponse, GetSpeciesError, GetSpeciesResponse, ReturnType<typeof getSpeciesQueryKey>>({
     queryFn: async ({ queryKey, signal }) => {
-        const { data } = await getBird({
+        const { data } = await getSpecies({
             ...options,
             ...queryKey[0],
             signal,
@@ -143,5 +141,5 @@ export const getBirdOptions = (options: Options<GetBirdData>) => queryOptions<Ge
         });
         return data;
     },
-    queryKey: getBirdQueryKey(options)
+    queryKey: getSpeciesQueryKey(options)
 });

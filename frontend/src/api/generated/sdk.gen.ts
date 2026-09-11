@@ -2,7 +2,7 @@
 
 import type { Client, ClientMeta, Options as Options2, RequestResult, TDataShape } from './client';
 import { client } from './client.gen';
-import type { GetBirdData, GetBirdErrors, GetBirdResponses, ListDetectionsData, ListDetectionsErrors, ListDetectionsResponses } from './types.gen';
+import type { GetSpeciesData, GetSpeciesErrors, GetSpeciesResponses, ListDetectionsData, ListDetectionsErrors, ListDetectionsResponses } from './types.gen';
 
 export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends boolean = boolean, TResponse = unknown> = Options2<TData, ThrowOnError, TResponse> & {
     /**
@@ -21,16 +21,15 @@ export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends 
 /**
  * List Detections
  *
- * One aggregated row per detected species, as in the reference table.
+ * One aggregated row per detected species.
  *
- * Search matches common or scientific names (case insensitive). Out-of-range
- * pages return an empty items array and retain the matching total.
+ * Search matches common or scientific names (case insensitive). The optional taxon filter limits results to birds, amphibians, or bats. Out-of-range pages return an empty items array and retain the matching total.
  */
 export const listDetections = <ThrowOnError extends boolean = false>(options?: Options<ListDetectionsData, ThrowOnError>): RequestResult<ListDetectionsResponses, ListDetectionsErrors, ThrowOnError> => (options?.client ?? client).get<ListDetectionsResponses, ListDetectionsErrors, ThrowOnError>({ url: '/api/detections', ...options });
 
 /**
- * Get Bird
+ * Get Species
  *
  * Get species information and monthly detection activity by stable ID.
  */
-export const getBird = <ThrowOnError extends boolean = false>(options: Options<GetBirdData, ThrowOnError>): RequestResult<GetBirdResponses, GetBirdErrors, ThrowOnError> => (options.client ?? client).get<GetBirdResponses, GetBirdErrors, ThrowOnError>({ url: '/api/birds/{bird_id}', ...options });
+export const getSpecies = <ThrowOnError extends boolean = false>(options: Options<GetSpeciesData, ThrowOnError>): RequestResult<GetSpeciesResponses, GetSpeciesErrors, ThrowOnError> => (options.client ?? client).get<GetSpeciesResponses, GetSpeciesErrors, ThrowOnError>({ url: '/api/species/{species_id}', ...options });
