@@ -9,7 +9,7 @@
     "/api/detections": {
       "get": {
         "summary": "List Detections",
-        "description": "One aggregated row per detected species.\n\nSearch matches common or scientific names (case insensitive). The optional taxon filter limits results to birds, amphibians, or bats. Out-of-range pages return an empty items array and retain the matching total.",
+        "description": "One aggregated row per detected species.\n\nSearch matches common or scientific names (case insensitive).\nThe optional taxon filter limits results to birds, amphibians, or bats.\n\nOut-of-range pages return an empty items array and retain the\nmatching total.",
         "operationId": "listDetections",
         "parameters": [
           {
@@ -51,7 +51,15 @@
             "in": "query",
             "required": false,
             "schema": {
-              "$ref": "#/components/schemas/Taxon"
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/Taxon"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Taxon"
             }
           },
           {
@@ -147,6 +155,25 @@
           }
         }
       }
+    },
+    "/api/biodiversity": {
+      "get": {
+        "summary": "Get Biodiversity",
+        "description": "Get biodiversity score and year-over-year comparison.",
+        "operationId": "getBiodiversity",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BiodiversityResponse"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -161,7 +188,7 @@
           },
           "detection_count": {
             "type": "integer",
-            "minimum": 0,
+            "minimum": 0.0,
             "title": "Detection Count"
           }
         },
@@ -172,83 +199,226 @@
         ],
         "title": "ActivityPoint"
       },
-      "SpeciesSummary": {
+      "BiodiversityResponse": {
         "properties": {
-          "id": {
-            "type": "string",
-            "title": "Id"
-          },
-          "taxon": {
-            "$ref": "#/components/schemas/Taxon"
-          },
-          "common_name": {
-            "type": "string",
-            "title": "Common Name"
-          },
-          "scientific_name": {
-            "type": "string",
-            "title": "Scientific Name"
-          },
-          "image_url": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Image Url"
-          },
-          "conservation_status": {
-            "$ref": "#/components/schemas/ConservationStatus"
-          },
-          "presence": {
-            "$ref": "#/components/schemas/Presence"
-          },
-          "detected_by": {
+          "daily": {
             "items": {
-              "type": "string"
+              "$ref": "#/components/schemas/DailyBiodiversityComparison"
             },
             "type": "array",
-            "title": "Detected By",
-            "description": "BioT sensor names"
+            "title": "Daily"
           },
-          "detected_on": {
-            "items": {
-              "type": "string"
-            },
-            "type": "array",
-            "title": "Detected On",
-            "description": "Site names"
-          },
-          "last_detected_at": {
-            "type": "string",
-            "format": "date-time",
-            "title": "Last Detected At"
-          },
-          "detection_count": {
-            "type": "integer",
-            "minimum": 0,
-            "title": "Detection Count",
-            "description": "Recorded events, not individuals"
+          "weekly": {
+            "$ref": "#/components/schemas/BiodiversityWeekly"
           }
         },
         "type": "object",
         "required": [
-          "id",
-          "taxon",
-          "common_name",
-          "scientific_name",
-          "image_url",
-          "conservation_status",
-          "presence",
-          "detected_by",
-          "detected_on",
-          "last_detected_at",
-          "detection_count"
+          "daily",
+          "weekly"
         ],
-        "title": "SpeciesSummary"
+        "title": "BiodiversityResponse"
+      },
+      "BiodiversityWeekly": {
+        "properties": {
+          "current": {
+            "$ref": "#/components/schemas/BiodiversityWeeklyPeriod"
+          },
+          "last_year": {
+            "$ref": "#/components/schemas/BiodiversityWeeklyPeriod"
+          },
+          "comparison": {
+            "$ref": "#/components/schemas/BiodiversityWeeklyComparison"
+          }
+        },
+        "type": "object",
+        "required": [
+          "current",
+          "last_year",
+          "comparison"
+        ],
+        "title": "BiodiversityWeekly"
+      },
+      "BiodiversityWeeklyComparison": {
+        "properties": {
+          "difference": {
+            "type": "number",
+            "title": "Difference"
+          },
+          "difference_percent": {
+            "type": "number",
+            "title": "Difference Percent"
+          },
+          "trend": {
+            "type": "string",
+            "enum": [
+              "improving",
+              "declining",
+              "stable"
+            ],
+            "title": "Trend"
+          }
+        },
+        "type": "object",
+        "required": [
+          "difference",
+          "difference_percent",
+          "trend"
+        ],
+        "title": "BiodiversityWeeklyComparison"
+      },
+      "BiodiversityWeeklyPeriod": {
+        "properties": {
+          "week_start": {
+            "type": "string",
+            "title": "Week Start"
+          },
+          "week_end": {
+            "type": "string",
+            "title": "Week End"
+          },
+          "average_score": {
+            "type": "number",
+            "title": "Average Score"
+          }
+        },
+        "type": "object",
+        "required": [
+          "week_start",
+          "week_end",
+          "average_score"
+        ],
+        "title": "BiodiversityWeeklyPeriod"
+      },
+      "ConservationStatus": {
+        "type": "string",
+        "enum": [
+          "least_concern",
+          "near_threatened",
+          "vulnerable",
+          "endangered"
+        ],
+        "title": "ConservationStatus"
+      },
+      "DailyBiodiversityComparison": {
+        "properties": {
+          "date": {
+            "type": "string",
+            "title": "Date"
+          },
+          "score": {
+            "type": "number",
+            "title": "Score"
+          },
+          "last_year": {
+            "$ref": "#/components/schemas/LastYearBiodiversity"
+          }
+        },
+        "type": "object",
+        "required": [
+          "date",
+          "score",
+          "last_year"
+        ],
+        "title": "DailyBiodiversityComparison"
+      },
+      "DetectionPage": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/SpeciesSummary"
+            },
+            "type": "array",
+            "title": "Items"
+          },
+          "total": {
+            "type": "integer",
+            "title": "Total",
+            "description": "Total species matching the filter before pagination"
+          },
+          "page": {
+            "type": "integer",
+            "title": "Page"
+          },
+          "page_size": {
+            "type": "integer",
+            "title": "Page Size"
+          },
+          "total_pages": {
+            "type": "integer",
+            "title": "Total Pages"
+          }
+        },
+        "type": "object",
+        "required": [
+          "items",
+          "total",
+          "page",
+          "page_size",
+          "total_pages"
+        ],
+        "title": "DetectionPage"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "LastYearBiodiversity": {
+        "properties": {
+          "date": {
+            "type": "string",
+            "title": "Date"
+          },
+          "score": {
+            "type": "number",
+            "title": "Score"
+          },
+          "difference": {
+            "type": "number",
+            "title": "Difference"
+          },
+          "difference_percent": {
+            "type": "number",
+            "title": "Difference Percent"
+          },
+          "trend": {
+            "type": "string",
+            "enum": [
+              "improving",
+              "declining",
+              "stable"
+            ],
+            "title": "Trend"
+          }
+        },
+        "type": "object",
+        "required": [
+          "date",
+          "score",
+          "difference",
+          "difference_percent",
+          "trend"
+        ],
+        "title": "LastYearBiodiversity"
+      },
+      "Presence": {
+        "type": "string",
+        "enum": [
+          "resident",
+          "breeding",
+          "passing",
+          "unknown"
+        ],
+        "title": "Presence"
       },
       "SpeciesDetail": {
         "properties": {
@@ -307,7 +477,7 @@
           },
           "detection_count": {
             "type": "integer",
-            "minimum": 0,
+            "minimum": 0.0,
             "title": "Detection Count",
             "description": "Recorded events, not individuals"
           },
@@ -356,7 +526,6 @@
           "taxon",
           "common_name",
           "scientific_name",
-          "image_url",
           "conservation_status",
           "presence",
           "detected_by",
@@ -365,69 +534,87 @@
           "detection_count",
           "description",
           "habitat",
-          "breeding_months",
-          "audio_url",
           "population_trend",
           "activity"
         ],
         "title": "SpeciesDetail"
       },
-      "ConservationStatus": {
-        "type": "string",
-        "enum": [
-          "least_concern",
-          "near_threatened",
-          "vulnerable",
-          "endangered"
-        ],
-        "title": "ConservationStatus"
-      },
-      "DetectionPage": {
+      "SpeciesSummary": {
         "properties": {
-          "items": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "taxon": {
+            "$ref": "#/components/schemas/Taxon"
+          },
+          "common_name": {
+            "type": "string",
+            "title": "Common Name"
+          },
+          "scientific_name": {
+            "type": "string",
+            "title": "Scientific Name"
+          },
+          "image_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Image Url"
+          },
+          "conservation_status": {
+            "$ref": "#/components/schemas/ConservationStatus"
+          },
+          "presence": {
+            "$ref": "#/components/schemas/Presence"
+          },
+          "detected_by": {
             "items": {
-              "$ref": "#/components/schemas/SpeciesSummary"
+              "type": "string"
             },
             "type": "array",
-            "title": "Items"
+            "title": "Detected By",
+            "description": "BioT sensor names"
           },
-          "total": {
-            "type": "integer",
-            "title": "Total",
-            "description": "Total species matching the filter before pagination"
+          "detected_on": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Detected On",
+            "description": "Site names"
           },
-          "page": {
-            "type": "integer",
-            "title": "Page"
+          "last_detected_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Last Detected At"
           },
-          "page_size": {
+          "detection_count": {
             "type": "integer",
-            "title": "Page Size"
-          },
-          "total_pages": {
-            "type": "integer",
-            "title": "Total Pages"
+            "minimum": 0.0,
+            "title": "Detection Count",
+            "description": "Recorded events, not individuals"
           }
         },
         "type": "object",
         "required": [
-          "items",
-          "total",
-          "page",
-          "page_size",
-          "total_pages"
+          "id",
+          "taxon",
+          "common_name",
+          "scientific_name",
+          "conservation_status",
+          "presence",
+          "detected_by",
+          "detected_on",
+          "last_detected_at",
+          "detection_count"
         ],
-        "title": "DetectionPage"
-      },
-      "Presence": {
-        "type": "string",
-        "enum": [
-          "resident",
-          "breeding",
-          "passing",
-          "unknown"
-        ],
-        "title": "Presence"
+        "title": "SpeciesSummary"
       },
       "Taxon": {
         "type": "string",
@@ -437,19 +624,6 @@
           "bat"
         ],
         "title": "Taxon"
-      },
-      "HTTPValidationError": {
-        "properties": {
-          "detail": {
-            "items": {
-              "$ref": "#/components/schemas/ValidationError"
-            },
-            "type": "array",
-            "title": "Detail"
-          }
-        },
-        "type": "object",
-        "title": "HTTPValidationError"
       },
       "ValidationError": {
         "properties": {

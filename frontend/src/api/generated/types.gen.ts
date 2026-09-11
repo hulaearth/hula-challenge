@@ -21,51 +21,149 @@ export type ActivityPoint = {
 };
 
 /**
- * SpeciesSummary
+ * BiodiversityResponse
  */
-export type SpeciesSummary = {
+export type BiodiversityResponse = {
     /**
-     * Id
+     * Daily
      */
-    id: string;
-    taxon: Taxon;
-    /**
-     * Common Name
-     */
-    common_name: string;
-    /**
-     * Scientific Name
-     */
-    scientific_name: string;
-    /**
-     * Image Url
-     */
-    image_url: string | null;
-    conservation_status: ConservationStatus;
-    presence: Presence;
-    /**
-     * Detected By
-     *
-     * BioT sensor names
-     */
-    detected_by: Array<string>;
-    /**
-     * Detected On
-     *
-     * Site names
-     */
-    detected_on: Array<string>;
-    /**
-     * Last Detected At
-     */
-    last_detected_at: string;
-    /**
-     * Detection Count
-     *
-     * Recorded events, not individuals
-     */
-    detection_count: number;
+    daily: Array<DailyBiodiversityComparison>;
+    weekly: BiodiversityWeekly;
 };
+
+/**
+ * BiodiversityWeekly
+ */
+export type BiodiversityWeekly = {
+    current: BiodiversityWeeklyPeriod;
+    last_year: BiodiversityWeeklyPeriod;
+    comparison: BiodiversityWeeklyComparison;
+};
+
+/**
+ * BiodiversityWeeklyComparison
+ */
+export type BiodiversityWeeklyComparison = {
+    /**
+     * Difference
+     */
+    difference: number;
+    /**
+     * Difference Percent
+     */
+    difference_percent: number;
+    /**
+     * Trend
+     */
+    trend: 'improving' | 'declining' | 'stable';
+};
+
+/**
+ * BiodiversityWeeklyPeriod
+ */
+export type BiodiversityWeeklyPeriod = {
+    /**
+     * Week Start
+     */
+    week_start: string;
+    /**
+     * Week End
+     */
+    week_end: string;
+    /**
+     * Average Score
+     */
+    average_score: number;
+};
+
+/**
+ * ConservationStatus
+ */
+export type ConservationStatus = 'least_concern' | 'near_threatened' | 'vulnerable' | 'endangered';
+
+/**
+ * DailyBiodiversityComparison
+ */
+export type DailyBiodiversityComparison = {
+    /**
+     * Date
+     */
+    date: string;
+    /**
+     * Score
+     */
+    score: number;
+    last_year: LastYearBiodiversity;
+};
+
+/**
+ * DetectionPage
+ */
+export type DetectionPage = {
+    /**
+     * Items
+     */
+    items: Array<SpeciesSummary>;
+    /**
+     * Total
+     *
+     * Total species matching the filter before pagination
+     */
+    total: number;
+    /**
+     * Page
+     */
+    page: number;
+    /**
+     * Page Size
+     */
+    page_size: number;
+    /**
+     * Total Pages
+     */
+    total_pages: number;
+};
+
+/**
+ * HTTPValidationError
+ */
+export type HttpValidationError = {
+    /**
+     * Detail
+     */
+    detail?: Array<ValidationError>;
+};
+
+/**
+ * LastYearBiodiversity
+ */
+export type LastYearBiodiversity = {
+    /**
+     * Date
+     */
+    date: string;
+    /**
+     * Score
+     */
+    score: number;
+    /**
+     * Difference
+     */
+    difference: number;
+    /**
+     * Difference Percent
+     */
+    difference_percent: number;
+    /**
+     * Trend
+     */
+    trend: 'improving' | 'declining' | 'stable';
+};
+
+/**
+ * Presence
+ */
+export type Presence = 'resident' | 'breeding' | 'passing' | 'unknown';
 
 /**
  * SpeciesDetail
@@ -87,7 +185,7 @@ export type SpeciesDetail = {
     /**
      * Image Url
      */
-    image_url: string | null;
+    image_url?: string | null;
     conservation_status: ConservationStatus;
     presence: Presence;
     /**
@@ -125,11 +223,11 @@ export type SpeciesDetail = {
      *
      * Month numbers, January = 1
      */
-    breeding_months: Array<number>;
+    breeding_months?: Array<number>;
     /**
      * Audio Url
      */
-    audio_url: string | null;
+    audio_url?: string | null;
     /**
      * Population Trend
      */
@@ -141,57 +239,56 @@ export type SpeciesDetail = {
 };
 
 /**
- * ConservationStatus
+ * SpeciesSummary
  */
-export type ConservationStatus = 'least_concern' | 'near_threatened' | 'vulnerable' | 'endangered';
-
-/**
- * DetectionPage
- */
-export type DetectionPage = {
+export type SpeciesSummary = {
     /**
-     * Items
+     * Id
      */
-    items: Array<SpeciesSummary>;
+    id: string;
+    taxon: Taxon;
     /**
-     * Total
+     * Common Name
+     */
+    common_name: string;
+    /**
+     * Scientific Name
+     */
+    scientific_name: string;
+    /**
+     * Image Url
+     */
+    image_url?: string | null;
+    conservation_status: ConservationStatus;
+    presence: Presence;
+    /**
+     * Detected By
      *
-     * Total species matching the filter before pagination
+     * BioT sensor names
      */
-    total: number;
+    detected_by: Array<string>;
     /**
-     * Page
+     * Detected On
+     *
+     * Site names
      */
-    page: number;
+    detected_on: Array<string>;
     /**
-     * Page Size
+     * Last Detected At
      */
-    page_size: number;
+    last_detected_at: string;
     /**
-     * Total Pages
+     * Detection Count
+     *
+     * Recorded events, not individuals
      */
-    total_pages: number;
+    detection_count: number;
 };
-
-/**
- * Presence
- */
-export type Presence = 'resident' | 'breeding' | 'passing' | 'unknown';
 
 /**
  * Taxon
  */
 export type Taxon = 'bird' | 'amphibian' | 'bat';
-
-/**
- * HTTPValidationError
- */
-export type HttpValidationError = {
-    /**
-     * Detail
-     */
-    detail?: Array<ValidationError>;
-};
 
 /**
  * ValidationError
@@ -237,7 +334,10 @@ export type ListDetectionsData = {
          * Search
          */
         search?: string;
-        taxon?: Taxon;
+        /**
+         * Taxon
+         */
+        taxon?: Taxon | null;
         /**
          * Sort By
          */
@@ -297,3 +397,19 @@ export type GetSpeciesResponses = {
 };
 
 export type GetSpeciesResponse = GetSpeciesResponses[keyof GetSpeciesResponses];
+
+export type GetBiodiversityData = {
+    body?: never;
+    path?: never;
+    query?: never;
+    url: '/api/biodiversity';
+};
+
+export type GetBiodiversityResponses = {
+    /**
+     * Successful Response
+     */
+    200: BiodiversityResponse;
+};
+
+export type GetBiodiversityResponse = GetBiodiversityResponses[keyof GetBiodiversityResponses];

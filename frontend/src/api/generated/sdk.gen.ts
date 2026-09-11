@@ -2,7 +2,7 @@
 
 import type { Client, ClientMeta, Options as Options2, RequestResult, TDataShape } from './client';
 import { client } from './client.gen';
-import type { GetSpeciesData, GetSpeciesErrors, GetSpeciesResponses, ListDetectionsData, ListDetectionsErrors, ListDetectionsResponses } from './types.gen';
+import type { GetBiodiversityData, GetBiodiversityResponses, GetSpeciesData, GetSpeciesErrors, GetSpeciesResponses, ListDetectionsData, ListDetectionsErrors, ListDetectionsResponses } from './types.gen';
 
 export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends boolean = boolean, TResponse = unknown> = Options2<TData, ThrowOnError, TResponse> & {
     /**
@@ -23,7 +23,11 @@ export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends 
  *
  * One aggregated row per detected species.
  *
- * Search matches common or scientific names (case insensitive). The optional taxon filter limits results to birds, amphibians, or bats. Out-of-range pages return an empty items array and retain the matching total.
+ * Search matches common or scientific names (case insensitive).
+ * The optional taxon filter limits results to birds, amphibians, or bats.
+ *
+ * Out-of-range pages return an empty items array and retain the
+ * matching total.
  */
 export const listDetections = <ThrowOnError extends boolean = false>(options?: Options<ListDetectionsData, ThrowOnError>): RequestResult<ListDetectionsResponses, ListDetectionsErrors, ThrowOnError> => (options?.client ?? client).get<ListDetectionsResponses, ListDetectionsErrors, ThrowOnError>({ url: '/api/detections', ...options });
 
@@ -33,3 +37,10 @@ export const listDetections = <ThrowOnError extends boolean = false>(options?: O
  * Get species information and monthly detection activity by stable ID.
  */
 export const getSpecies = <ThrowOnError extends boolean = false>(options: Options<GetSpeciesData, ThrowOnError>): RequestResult<GetSpeciesResponses, GetSpeciesErrors, ThrowOnError> => (options.client ?? client).get<GetSpeciesResponses, GetSpeciesErrors, ThrowOnError>({ url: '/api/species/{species_id}', ...options });
+
+/**
+ * Get Biodiversity
+ *
+ * Get biodiversity score and year-over-year comparison.
+ */
+export const getBiodiversity = <ThrowOnError extends boolean = false>(options?: Options<GetBiodiversityData, ThrowOnError>): RequestResult<GetBiodiversityResponses, unknown, ThrowOnError> => (options?.client ?? client).get<GetBiodiversityResponses, unknown, ThrowOnError>({ url: '/api/biodiversity', ...options });

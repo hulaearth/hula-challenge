@@ -5,7 +5,7 @@ from typing import Annotated, Literal
 
 from fastapi import FastAPI, HTTPException, Query
 
-from app.models import DetectionPage, SpeciesDetail, SpeciesSummary, Taxon
+from app.models import DetectionPage, SpeciesDetail, SpeciesSummary, Taxon, BiodiversityResponse
 
 app = FastAPI(
     title="Hula biodiversity API",
@@ -22,6 +22,14 @@ SPECIES = [
         Path(__file__).with_name("mock_data.json").read_text()
     )
 ]
+
+BIODIVERSITY = BiodiversityResponse.model_validate(
+    json.loads(
+        Path(__file__)
+        .with_name("biodiversity_mock_data.json")
+        .read_text()
+    )
+)
 
 
 @app.get("/api/detections", operation_id="listDetections")
@@ -95,3 +103,12 @@ def get_species(species_id: str) -> SpeciesDetail:
         status_code=404,
         detail="Species not found",
     )
+    
+    
+@app.get(
+    "/api/biodiversity",
+    operation_id="getBiodiversity",
+)
+def get_biodiversity() -> BiodiversityResponse:
+    """Get biodiversity score and year-over-year comparison."""
+    return BIODIVERSITY

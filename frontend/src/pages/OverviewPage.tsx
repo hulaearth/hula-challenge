@@ -1,8 +1,9 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 
-import { listDetections } from "../api/generated/sdk.gen";
+import { getBiodiversity, listDetections } from "../api/generated/sdk.gen";
 import type {
+    BiodiversityResponse,
     SpeciesSummary,
     Taxon,
 } from "../api/generated/types.gen";
@@ -10,6 +11,7 @@ import type {
 import DistributionCard from "../components/DistributionCard";
 import StatCard from "../components/StatCard";
 import TopSpecies from "../components/TopSpecies";
+import BiodiversityChart from "../components/BiodiversityChart";
 
 const TAXA: Array<{
     id: Taxon;
@@ -40,21 +42,35 @@ export default function OverviewPage() {
 
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
-
+    const [biodiversity, setBiodiversity] =
+        useState<BiodiversityResponse | null>(null);
     useEffect(() => {
-        async function loadSpecies() {
+        async function loadData() {
             try {
-                const response = await listDetections({
-                    query: {
-                        page_size: 100,
-                    },
-                });
+                const [speciesResponse, biodiversityResponse] =
+                    await Promise.all([
+                        listDetections({
+                            query: {
+                                page_size: 100,
+                            },
+                        }),
+                        getBiodiversity(),
+                    ]);
 
-                if (!response.data) {
-                    throw new Error("No biodiversity data returned");
+                if (!speciesResponse.data) {
+                    throw new Error(
+                        "No species data returned"
+                    );
                 }
 
-                setSpecies(response.data.items);
+                if (!biodiversityResponse.data) {
+                    throw new Error(
+                        "No biodiversity score returned"
+                    );
+                }
+
+                setSpecies(speciesResponse.data.items);
+                setBiodiversity(biodiversityResponse.data);
             } catch (err) {
                 setError(
                     err instanceof Error
@@ -66,7 +82,7 @@ export default function OverviewPage() {
             }
         }
 
-        loadSpecies();
+        loadData();
     }, []);
 
     const distribution = useMemo(
@@ -164,6 +180,13 @@ export default function OverviewPage() {
 
                 <TopSpecies species={topSpecies} />
             </section>
+
+            {/* Biodiversity score */}
+            {biodiversity && (
+                <section>
+                    <BiodiversityChart data={biodiversity} />
+                </section>
+            )}
 
             {/* Taxon navigation */}
             <section>

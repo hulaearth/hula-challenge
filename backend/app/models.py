@@ -1,4 +1,5 @@
 import datetime as dt
+from typing import Literal
 from enum import StrEnum
 from pydantic import BaseModel, Field
 
@@ -78,3 +79,42 @@ class DetectionPage(BaseModel):
     page: int
     page_size: int
     total_pages: int
+
+
+Trend = Literal["improving", "declining", "stable"]
+
+class LastYearBiodiversity(BaseModel):
+    date: str
+    score: float
+    difference: float
+    difference_percent: float
+    trend: Trend
+
+
+class DailyBiodiversityComparison(BaseModel):
+    date: str
+    score: float
+    last_year: LastYearBiodiversity
+
+
+class BiodiversityWeeklyPeriod(BaseModel):
+    week_start: str
+    week_end: str
+    average_score: float
+
+
+class BiodiversityWeeklyComparison(BaseModel):
+    difference: float
+    difference_percent: float
+    trend: Trend
+
+
+class BiodiversityWeekly(BaseModel):
+    current: BiodiversityWeeklyPeriod
+    last_year: BiodiversityWeeklyPeriod
+    comparison: BiodiversityWeeklyComparison
+
+
+class BiodiversityResponse(BaseModel):
+    daily: list[DailyBiodiversityComparison]
+    weekly: BiodiversityWeekly
