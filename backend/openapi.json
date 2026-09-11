@@ -1,0 +1,471 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Hula bird API",
+    "description": "Deterministic, fictional bird observations for the experience day.",
+    "version": "0.1.0"
+  },
+  "paths": {
+    "/api/detections": {
+      "get": {
+        "summary": "List Detections",
+        "description": "One aggregated row per detected species, as in the reference table.\n\nSearch matches common or scientific names (case insensitive). Out-of-range\npages return an empty items array and retain the matching total.",
+        "operationId": "listDetections",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 1,
+              "title": "Page"
+            }
+          },
+          {
+            "name": "page_size",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 100,
+              "minimum": 1,
+              "default": 10,
+              "title": "Page Size"
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "maxLength": 100,
+              "default": "",
+              "title": "Search"
+            }
+          },
+          {
+            "name": "sort_by",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "enum": [
+                "last_detected_at",
+                "common_name",
+                "detection_count"
+              ],
+              "type": "string",
+              "default": "last_detected_at",
+              "title": "Sort By"
+            }
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "enum": [
+                "asc",
+                "desc"
+              ],
+              "type": "string",
+              "default": "desc",
+              "title": "Order"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DetectionPage"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/birds/{bird_id}": {
+      "get": {
+        "summary": "Get Bird",
+        "description": "Get species information and monthly detection activity by stable ID.",
+        "operationId": "getBird",
+        "parameters": [
+          {
+            "name": "bird_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Bird Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BirdDetail"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ActivityPoint": {
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date",
+            "title": "Date",
+            "description": "First day of the month, UTC"
+          },
+          "detection_count": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Detection Count"
+          }
+        },
+        "type": "object",
+        "required": [
+          "date",
+          "detection_count"
+        ],
+        "title": "ActivityPoint"
+      },
+      "BirdDetail": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "common_name": {
+            "type": "string",
+            "title": "Common Name"
+          },
+          "scientific_name": {
+            "type": "string",
+            "title": "Scientific Name"
+          },
+          "image_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Image Url"
+          },
+          "conservation_status": {
+            "$ref": "#/components/schemas/ConservationStatus"
+          },
+          "presence": {
+            "$ref": "#/components/schemas/Presence"
+          },
+          "detected_by": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Detected By",
+            "description": "BioT sensor names"
+          },
+          "detected_on": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Detected On",
+            "description": "Site names"
+          },
+          "last_detected_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Last Detected At"
+          },
+          "detection_count": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Detection Count",
+            "description": "Recorded events, not individuals"
+          },
+          "description": {
+            "type": "string",
+            "title": "Description"
+          },
+          "habitat": {
+            "type": "string",
+            "title": "Habitat"
+          },
+          "breeding_months": {
+            "items": {
+              "type": "integer"
+            },
+            "type": "array",
+            "title": "Breeding Months",
+            "description": "Month numbers, January = 1"
+          },
+          "audio_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Audio Url"
+          },
+          "population_trend": {
+            "type": "string",
+            "title": "Population Trend"
+          },
+          "activity": {
+            "items": {
+              "$ref": "#/components/schemas/ActivityPoint"
+            },
+            "type": "array",
+            "title": "Activity"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "common_name",
+          "scientific_name",
+          "image_url",
+          "conservation_status",
+          "presence",
+          "detected_by",
+          "detected_on",
+          "last_detected_at",
+          "detection_count",
+          "description",
+          "habitat",
+          "breeding_months",
+          "audio_url",
+          "population_trend",
+          "activity"
+        ],
+        "title": "BirdDetail"
+      },
+      "BirdSummary": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "common_name": {
+            "type": "string",
+            "title": "Common Name"
+          },
+          "scientific_name": {
+            "type": "string",
+            "title": "Scientific Name"
+          },
+          "image_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Image Url"
+          },
+          "conservation_status": {
+            "$ref": "#/components/schemas/ConservationStatus"
+          },
+          "presence": {
+            "$ref": "#/components/schemas/Presence"
+          },
+          "detected_by": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Detected By",
+            "description": "BioT sensor names"
+          },
+          "detected_on": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Detected On",
+            "description": "Site names"
+          },
+          "last_detected_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Last Detected At"
+          },
+          "detection_count": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Detection Count",
+            "description": "Recorded events, not individuals"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "common_name",
+          "scientific_name",
+          "image_url",
+          "conservation_status",
+          "presence",
+          "detected_by",
+          "detected_on",
+          "last_detected_at",
+          "detection_count"
+        ],
+        "title": "BirdSummary"
+      },
+      "ConservationStatus": {
+        "type": "string",
+        "enum": [
+          "least_concern",
+          "near_threatened",
+          "vulnerable",
+          "endangered"
+        ],
+        "title": "ConservationStatus"
+      },
+      "DetectionPage": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/BirdSummary"
+            },
+            "type": "array",
+            "title": "Items"
+          },
+          "total": {
+            "type": "integer",
+            "title": "Total",
+            "description": "Total species matching the filter before pagination"
+          },
+          "page": {
+            "type": "integer",
+            "title": "Page"
+          },
+          "page_size": {
+            "type": "integer",
+            "title": "Page Size"
+          },
+          "total_pages": {
+            "type": "integer",
+            "title": "Total Pages"
+          }
+        },
+        "type": "object",
+        "required": [
+          "items",
+          "total",
+          "page",
+          "page_size",
+          "total_pages"
+        ],
+        "title": "DetectionPage"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "Presence": {
+        "type": "string",
+        "enum": [
+          "resident",
+          "breeding",
+          "passing",
+          "unknown"
+        ],
+        "title": "Presence"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          },
+          "input": {
+            "title": "Input"
+          },
+          "ctx": {
+            "type": "object",
+            "title": "Context"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    }
+  }
+}

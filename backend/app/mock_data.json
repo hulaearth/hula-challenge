@@ -1,0 +1,840 @@
+[
+  {
+    "id": "common-firecrest",
+    "common_name": "Common Firecrest",
+    "scientific_name": "Regulus ignicapilla",
+    "image_url": null,
+    "conservation_status": "least_concern",
+    "presence": "resident",
+    "detected_by": [
+      "BioT 01",
+      "BioT 02"
+    ],
+    "detected_on": [
+      "Arlesried 1",
+      "South edge"
+    ],
+    "last_detected_at": "2026-09-10T15:44:00Z",
+    "detection_count": 225,
+    "description": "Common Firecrest is included in this fictional project dataset. Its observations illustrate the resident presence category; this is not an ecological assessment.",
+    "habitat": "Mixed woodland with dense evergreen cover.",
+    "breeding_months": [
+      4,
+      5,
+      6,
+      7
+    ],
+    "audio_url": null,
+    "population_trend": "unknown",
+    "activity": [
+      {
+        "date": "2026-04-01",
+        "detection_count": 15
+      },
+      {
+        "date": "2026-05-01",
+        "detection_count": 31
+      },
+      {
+        "date": "2026-06-01",
+        "detection_count": 68
+      },
+      {
+        "date": "2026-07-01",
+        "detection_count": 54
+      },
+      {
+        "date": "2026-08-01",
+        "detection_count": 39
+      },
+      {
+        "date": "2026-09-01",
+        "detection_count": 18
+      }
+    ]
+  },
+  {
+    "id": "coal-tit",
+    "common_name": "Coal Tit",
+    "scientific_name": "Periparus ater",
+    "image_url": null,
+    "conservation_status": "least_concern",
+    "presence": "resident",
+    "detected_by": [
+      "BioT 01"
+    ],
+    "detected_on": [
+      "Arlesried 1"
+    ],
+    "last_detected_at": "2026-09-10T15:42:00Z",
+    "detection_count": 244,
+    "description": "Coal Tit is included in this fictional project dataset. Its observations illustrate the resident presence category; this is not an ecological assessment.",
+    "habitat": "Coniferous woodland and mature gardens.",
+    "breeding_months": [
+      4,
+      5,
+      6
+    ],
+    "audio_url": null,
+    "population_trend": "unknown",
+    "activity": [
+      {
+        "date": "2026-04-01",
+        "detection_count": 18
+      },
+      {
+        "date": "2026-05-01",
+        "detection_count": 35
+      },
+      {
+        "date": "2026-06-01",
+        "detection_count": 73
+      },
+      {
+        "date": "2026-07-01",
+        "detection_count": 58
+      },
+      {
+        "date": "2026-08-01",
+        "detection_count": 41
+      },
+      {
+        "date": "2026-09-01",
+        "detection_count": 19
+      }
+    ]
+  },
+  {
+    "id": "european-robin",
+    "common_name": "European Robin",
+    "scientific_name": "Erithacus rubecula",
+    "image_url": null,
+    "conservation_status": "least_concern",
+    "presence": "breeding",
+    "detected_by": [
+      "BioT 01"
+    ],
+    "detected_on": [
+      "Arlesried 1"
+    ],
+    "last_detected_at": "2026-09-10T15:40:00Z",
+    "detection_count": 263,
+    "description": "European Robin is included in this fictional project dataset. Its observations illustrate the breeding presence category; this is not an ecological assessment.",
+    "habitat": "Woodland undergrowth, hedges and gardens.",
+    "breeding_months": [
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "audio_url": null,
+    "population_trend": "unknown",
+    "activity": [
+      {
+        "date": "2026-04-01",
+        "detection_count": 21
+      },
+      {
+        "date": "2026-05-01",
+        "detection_count": 39
+      },
+      {
+        "date": "2026-06-01",
+        "detection_count": 78
+      },
+      {
+        "date": "2026-07-01",
+        "detection_count": 62
+      },
+      {
+        "date": "2026-08-01",
+        "detection_count": 43
+      },
+      {
+        "date": "2026-09-01",
+        "detection_count": 20
+      }
+    ]
+  },
+  {
+    "id": "eurasian-treecreeper",
+    "common_name": "Eurasian Treecreeper",
+    "scientific_name": "Certhia familiaris",
+    "image_url": null,
+    "conservation_status": "least_concern",
+    "presence": "resident",
+    "detected_by": [
+      "BioT 01",
+      "BioT 02"
+    ],
+    "detected_on": [
+      "Arlesried 1",
+      "South edge"
+    ],
+    "last_detected_at": "2026-09-10T15:38:00Z",
+    "detection_count": 282,
+    "description": "Eurasian Treecreeper is included in this fictional project dataset. Its observations illustrate the resident presence category; this is not an ecological assessment.",
+    "habitat": "Mature woodland with rough-barked trees.",
+    "breeding_months": [
+      4,
+      5,
+      6
+    ],
+    "audio_url": null,
+    "population_trend": "unknown",
+    "activity": [
+      {
+        "date": "2026-04-01",
+        "detection_count": 24
+      },
+      {
+        "date": "2026-05-01",
+        "detection_count": 43
+      },
+      {
+        "date": "2026-06-01",
+        "detection_count": 83
+      },
+      {
+        "date": "2026-07-01",
+        "detection_count": 66
+      },
+      {
+        "date": "2026-08-01",
+        "detection_count": 45
+      },
+      {
+        "date": "2026-09-01",
+        "detection_count": 21
+      }
+    ]
+  },
+  {
+    "id": "water-rail",
+    "common_name": "Water Rail",
+    "scientific_name": "Rallus aquaticus",
+    "image_url": null,
+    "conservation_status": "vulnerable",
+    "presence": "unknown",
+    "detected_by": [
+      "BioT 01"
+    ],
+    "detected_on": [
+      "Arlesried 1"
+    ],
+    "last_detected_at": "2026-09-10T14:36:00Z",
+    "detection_count": 301,
+    "description": "Water Rail is included in this fictional project dataset. Its observations illustrate the unknown presence category; this is not an ecological assessment.",
+    "habitat": "Dense reedbeds and freshwater wetland margins.",
+    "breeding_months": [
+      4,
+      5,
+      6,
+      7
+    ],
+    "audio_url": null,
+    "population_trend": "unknown",
+    "activity": [
+      {
+        "date": "2026-04-01",
+        "detection_count": 27
+      },
+      {
+        "date": "2026-05-01",
+        "detection_count": 47
+      },
+      {
+        "date": "2026-06-01",
+        "detection_count": 88
+      },
+      {
+        "date": "2026-07-01",
+        "detection_count": 70
+      },
+      {
+        "date": "2026-08-01",
+        "detection_count": 47
+      },
+      {
+        "date": "2026-09-01",
+        "detection_count": 22
+      }
+    ]
+  },
+  {
+    "id": "marsh-tit",
+    "common_name": "Marsh Tit",
+    "scientific_name": "Poecile palustris",
+    "image_url": null,
+    "conservation_status": "least_concern",
+    "presence": "resident",
+    "detected_by": [
+      "BioT 01"
+    ],
+    "detected_on": [
+      "Arlesried 1"
+    ],
+    "last_detected_at": "2026-09-10T14:34:00Z",
+    "detection_count": 320,
+    "description": "Marsh Tit is included in this fictional project dataset. Its observations illustrate the resident presence category; this is not an ecological assessment.",
+    "habitat": "Deciduous woodland with mature trees.",
+    "breeding_months": [
+      4,
+      5,
+      6
+    ],
+    "audio_url": null,
+    "population_trend": "unknown",
+    "activity": [
+      {
+        "date": "2026-04-01",
+        "detection_count": 30
+      },
+      {
+        "date": "2026-05-01",
+        "detection_count": 51
+      },
+      {
+        "date": "2026-06-01",
+        "detection_count": 93
+      },
+      {
+        "date": "2026-07-01",
+        "detection_count": 74
+      },
+      {
+        "date": "2026-08-01",
+        "detection_count": 49
+      },
+      {
+        "date": "2026-09-01",
+        "detection_count": 23
+      }
+    ]
+  },
+  {
+    "id": "great-spotted-woodpecker",
+    "common_name": "Great Spotted Woodpecker",
+    "scientific_name": "Dendrocopos major",
+    "image_url": null,
+    "conservation_status": "least_concern",
+    "presence": "breeding",
+    "detected_by": [
+      "BioT 01",
+      "BioT 02"
+    ],
+    "detected_on": [
+      "Arlesried 1",
+      "South edge"
+    ],
+    "last_detected_at": "2026-09-10T14:32:00Z",
+    "detection_count": 339,
+    "description": "Great Spotted Woodpecker is included in this fictional project dataset. Its observations illustrate the breeding presence category; this is not an ecological assessment.",
+    "habitat": "Woodland, parks and wooded farmland.",
+    "breeding_months": [
+      4,
+      5,
+      6
+    ],
+    "audio_url": null,
+    "population_trend": "unknown",
+    "activity": [
+      {
+        "date": "2026-04-01",
+        "detection_count": 33
+      },
+      {
+        "date": "2026-05-01",
+        "detection_count": 55
+      },
+      {
+        "date": "2026-06-01",
+        "detection_count": 98
+      },
+      {
+        "date": "2026-07-01",
+        "detection_count": 78
+      },
+      {
+        "date": "2026-08-01",
+        "detection_count": 51
+      },
+      {
+        "date": "2026-09-01",
+        "detection_count": 24
+      }
+    ]
+  },
+  {
+    "id": "common-buzzard",
+    "common_name": "Common Buzzard",
+    "scientific_name": "Buteo buteo",
+    "image_url": null,
+    "conservation_status": "least_concern",
+    "presence": "passing",
+    "detected_by": [
+      "BioT 01"
+    ],
+    "detected_on": [
+      "Arlesried 1"
+    ],
+    "last_detected_at": "2026-09-10T14:30:00Z",
+    "detection_count": 358,
+    "description": "Common Buzzard is included in this fictional project dataset. Its observations illustrate the passing presence category; this is not an ecological assessment.",
+    "habitat": "Open fields adjoining woodland.",
+    "breeding_months": [
+      3,
+      4,
+      5,
+      6
+    ],
+    "audio_url": null,
+    "population_trend": "unknown",
+    "activity": [
+      {
+        "date": "2026-04-01",
+        "detection_count": 36
+      },
+      {
+        "date": "2026-05-01",
+        "detection_count": 59
+      },
+      {
+        "date": "2026-06-01",
+        "detection_count": 103
+      },
+      {
+        "date": "2026-07-01",
+        "detection_count": 82
+      },
+      {
+        "date": "2026-08-01",
+        "detection_count": 53
+      },
+      {
+        "date": "2026-09-01",
+        "detection_count": 25
+      }
+    ]
+  },
+  {
+    "id": "eurasian-jay",
+    "common_name": "Eurasian Jay",
+    "scientific_name": "Garrulus glandarius",
+    "image_url": null,
+    "conservation_status": "least_concern",
+    "presence": "resident",
+    "detected_by": [
+      "BioT 01"
+    ],
+    "detected_on": [
+      "Arlesried 1"
+    ],
+    "last_detected_at": "2026-09-10T13:28:00Z",
+    "detection_count": 377,
+    "description": "Eurasian Jay is included in this fictional project dataset. Its observations illustrate the resident presence category; this is not an ecological assessment.",
+    "habitat": "Oak woodland and mixed forests.",
+    "breeding_months": [
+      4,
+      5,
+      6
+    ],
+    "audio_url": null,
+    "population_trend": "unknown",
+    "activity": [
+      {
+        "date": "2026-04-01",
+        "detection_count": 39
+      },
+      {
+        "date": "2026-05-01",
+        "detection_count": 63
+      },
+      {
+        "date": "2026-06-01",
+        "detection_count": 108
+      },
+      {
+        "date": "2026-07-01",
+        "detection_count": 86
+      },
+      {
+        "date": "2026-08-01",
+        "detection_count": 55
+      },
+      {
+        "date": "2026-09-01",
+        "detection_count": 26
+      }
+    ]
+  },
+  {
+    "id": "eurasian-nuthatch",
+    "common_name": "Eurasian Nuthatch",
+    "scientific_name": "Sitta europaea",
+    "image_url": null,
+    "conservation_status": "least_concern",
+    "presence": "resident",
+    "detected_by": [
+      "BioT 01",
+      "BioT 02"
+    ],
+    "detected_on": [
+      "Arlesried 1",
+      "South edge"
+    ],
+    "last_detected_at": "2026-09-10T13:26:00Z",
+    "detection_count": 396,
+    "description": "Eurasian Nuthatch is included in this fictional project dataset. Its observations illustrate the resident presence category; this is not an ecological assessment.",
+    "habitat": "Mature deciduous woodland and parks.",
+    "breeding_months": [
+      4,
+      5,
+      6
+    ],
+    "audio_url": null,
+    "population_trend": "unknown",
+    "activity": [
+      {
+        "date": "2026-04-01",
+        "detection_count": 42
+      },
+      {
+        "date": "2026-05-01",
+        "detection_count": 67
+      },
+      {
+        "date": "2026-06-01",
+        "detection_count": 113
+      },
+      {
+        "date": "2026-07-01",
+        "detection_count": 90
+      },
+      {
+        "date": "2026-08-01",
+        "detection_count": 57
+      },
+      {
+        "date": "2026-09-01",
+        "detection_count": 27
+      }
+    ]
+  },
+  {
+    "id": "common-chiffchaff",
+    "common_name": "Common Chiffchaff",
+    "scientific_name": "Phylloscopus collybita",
+    "image_url": null,
+    "conservation_status": "least_concern",
+    "presence": "breeding",
+    "detected_by": [
+      "BioT 01"
+    ],
+    "detected_on": [
+      "Arlesried 1"
+    ],
+    "last_detected_at": "2026-09-10T13:24:00Z",
+    "detection_count": 2090,
+    "description": "Common Chiffchaff is included in this fictional project dataset. Its observations illustrate the breeding presence category; this is not an ecological assessment.",
+    "habitat": "Woodland edges and scrub.",
+    "breeding_months": [
+      4,
+      5,
+      6,
+      7
+    ],
+    "audio_url": null,
+    "population_trend": "unknown",
+    "activity": [
+      {
+        "date": "2026-04-01",
+        "detection_count": 210
+      },
+      {
+        "date": "2026-05-01",
+        "detection_count": 320
+      },
+      {
+        "date": "2026-06-01",
+        "detection_count": 480
+      },
+      {
+        "date": "2026-07-01",
+        "detection_count": 450
+      },
+      {
+        "date": "2026-08-01",
+        "detection_count": 380
+      },
+      {
+        "date": "2026-09-01",
+        "detection_count": 250
+      }
+    ]
+  },
+  {
+    "id": "red-backed-shrike",
+    "common_name": "Red-backed Shrike",
+    "scientific_name": "Lanius collurio",
+    "image_url": null,
+    "conservation_status": "near_threatened",
+    "presence": "breeding",
+    "detected_by": [
+      "BioT 01"
+    ],
+    "detected_on": [
+      "Arlesried 1"
+    ],
+    "last_detected_at": "2026-09-10T13:22:00Z",
+    "detection_count": 434,
+    "description": "Red-backed Shrike is included in this fictional project dataset. Its observations illustrate the breeding presence category; this is not an ecological assessment.",
+    "habitat": "Hedgerows next to insect-rich open grassland.",
+    "breeding_months": [
+      5,
+      6,
+      7
+    ],
+    "audio_url": null,
+    "population_trend": "unknown",
+    "activity": [
+      {
+        "date": "2026-04-01",
+        "detection_count": 48
+      },
+      {
+        "date": "2026-05-01",
+        "detection_count": 75
+      },
+      {
+        "date": "2026-06-01",
+        "detection_count": 123
+      },
+      {
+        "date": "2026-07-01",
+        "detection_count": 98
+      },
+      {
+        "date": "2026-08-01",
+        "detection_count": 61
+      },
+      {
+        "date": "2026-09-01",
+        "detection_count": 29
+      }
+    ]
+  },
+  {
+    "id": "barn-swallow",
+    "common_name": "Barn Swallow",
+    "scientific_name": "Hirundo rustica",
+    "image_url": null,
+    "conservation_status": "least_concern",
+    "presence": "passing",
+    "detected_by": [
+      "BioT 01",
+      "BioT 02"
+    ],
+    "detected_on": [
+      "Arlesried 1",
+      "South edge"
+    ],
+    "last_detected_at": "2026-09-10T12:20:00Z",
+    "detection_count": 453,
+    "description": "Barn Swallow is included in this fictional project dataset. Its observations illustrate the passing presence category; this is not an ecological assessment.",
+    "habitat": "Open farmland and meadows near buildings.",
+    "breeding_months": [
+      5,
+      6,
+      7,
+      8
+    ],
+    "audio_url": null,
+    "population_trend": "unknown",
+    "activity": [
+      {
+        "date": "2026-04-01",
+        "detection_count": 51
+      },
+      {
+        "date": "2026-05-01",
+        "detection_count": 79
+      },
+      {
+        "date": "2026-06-01",
+        "detection_count": 128
+      },
+      {
+        "date": "2026-07-01",
+        "detection_count": 102
+      },
+      {
+        "date": "2026-08-01",
+        "detection_count": 63
+      },
+      {
+        "date": "2026-09-01",
+        "detection_count": 30
+      }
+    ]
+  },
+  {
+    "id": "common-blackbird",
+    "common_name": "Common Blackbird",
+    "scientific_name": "Turdus merula",
+    "image_url": null,
+    "conservation_status": "least_concern",
+    "presence": "resident",
+    "detected_by": [
+      "BioT 01"
+    ],
+    "detected_on": [
+      "Arlesried 1"
+    ],
+    "last_detected_at": "2026-09-10T12:18:00Z",
+    "detection_count": 472,
+    "description": "Common Blackbird is included in this fictional project dataset. Its observations illustrate the resident presence category; this is not an ecological assessment.",
+    "habitat": "Gardens, hedgerows and woodland.",
+    "breeding_months": [
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "audio_url": null,
+    "population_trend": "unknown",
+    "activity": [
+      {
+        "date": "2026-04-01",
+        "detection_count": 54
+      },
+      {
+        "date": "2026-05-01",
+        "detection_count": 83
+      },
+      {
+        "date": "2026-06-01",
+        "detection_count": 133
+      },
+      {
+        "date": "2026-07-01",
+        "detection_count": 106
+      },
+      {
+        "date": "2026-08-01",
+        "detection_count": 65
+      },
+      {
+        "date": "2026-09-01",
+        "detection_count": 31
+      }
+    ]
+  },
+  {
+    "id": "eurasian-skylark",
+    "common_name": "Eurasian Skylark",
+    "scientific_name": "Alauda arvensis",
+    "image_url": null,
+    "conservation_status": "endangered",
+    "presence": "breeding",
+    "detected_by": [
+      "BioT 01"
+    ],
+    "detected_on": [
+      "Arlesried 1"
+    ],
+    "last_detected_at": "2026-09-10T12:16:00Z",
+    "detection_count": 491,
+    "description": "Eurasian Skylark is included in this fictional project dataset. Its observations illustrate the breeding presence category; this is not an ecological assessment.",
+    "habitat": "Open grassland and arable fields.",
+    "breeding_months": [
+      4,
+      5,
+      6,
+      7
+    ],
+    "audio_url": null,
+    "population_trend": "unknown",
+    "activity": [
+      {
+        "date": "2026-04-01",
+        "detection_count": 57
+      },
+      {
+        "date": "2026-05-01",
+        "detection_count": 87
+      },
+      {
+        "date": "2026-06-01",
+        "detection_count": 138
+      },
+      {
+        "date": "2026-07-01",
+        "detection_count": 110
+      },
+      {
+        "date": "2026-08-01",
+        "detection_count": 67
+      },
+      {
+        "date": "2026-09-01",
+        "detection_count": 32
+      }
+    ]
+  },
+  {
+    "id": "great-tit",
+    "common_name": "Great Tit",
+    "scientific_name": "Parus major",
+    "image_url": null,
+    "conservation_status": "least_concern",
+    "presence": "resident",
+    "detected_by": [
+      "BioT 01",
+      "BioT 02"
+    ],
+    "detected_on": [
+      "Arlesried 1",
+      "South edge"
+    ],
+    "last_detected_at": "2026-09-10T12:14:00Z",
+    "detection_count": 510,
+    "description": "Great Tit is included in this fictional project dataset. Its observations illustrate the resident presence category; this is not an ecological assessment.",
+    "habitat": "Woodland, parks and gardens.",
+    "breeding_months": [
+      4,
+      5,
+      6
+    ],
+    "audio_url": null,
+    "population_trend": "unknown",
+    "activity": [
+      {
+        "date": "2026-04-01",
+        "detection_count": 60
+      },
+      {
+        "date": "2026-05-01",
+        "detection_count": 91
+      },
+      {
+        "date": "2026-06-01",
+        "detection_count": 143
+      },
+      {
+        "date": "2026-07-01",
+        "detection_count": 114
+      },
+      {
+        "date": "2026-08-01",
+        "detection_count": 69
+      },
+      {
+        "date": "2026-09-01",
+        "detection_count": 33
+      }
+    ]
+  }
+]
